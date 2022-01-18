@@ -48,17 +48,16 @@ void randData(double *a,int N, int M){
     }
 }
 
-void findRowSum(const double *a,double *b,int N,int M)
-{
-    for(int i = 0; i < N; i++){
-        double sum1 = 0;
-        
-        for (int j = 0; j < M; j++){
-            sum1 +=  *a+(j+(M*i));
-        }
-        b[i] = sum1;
-    }   
-
+void findRowSum(const double *dPtr, double *sum1, int N, int M){
+	double sum = 0;
+	int j = 0;
+	for(int i = 0; i < N*M; i++){
+		sum += dPtr[i];
+		if(i % M + 1 == M){
+			sum1[j++] = sum;
+			sum = 0;
+		}	
+	}
 }
 
 void findColSum(const double *a,double *b,int N,int M)
